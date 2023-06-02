@@ -20,12 +20,6 @@
 #include <string.h>
 #include "argon2.h"
 #include "core.h"
-#ifdef __MINGW32__
-#include <inttypes.h>
-#else
-/* Don't use <inttypes.h> (it's not C89) */
-#define PRIx64 "llx"
-#endif
 
 void initial_kat(const uint8_t *blockhash, const argon2_context *context,
                  argon2_type type) {
@@ -121,7 +115,7 @@ void internal_kat(const argon2_instance_t *instance, uint32_t pass) {
                     : ARGON2_QWORDS_IN_BLOCK;
 
             for (j = 0; j < how_many_words; ++j)
-                printf("Block %.4u [%3u]: %016" PRIx64 "\n", i, j,
+                printf("Block %.4u [%3u]: %016llx\n", i, j,
                        (unsigned long long)instance->memory[i].v[j]);
         }
     }

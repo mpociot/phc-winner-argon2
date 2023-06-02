@@ -20,14 +20,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#ifdef _WIN32
+#ifdef _MSC_VER
 #include <intrin.h>
 #endif
 
 #include "argon2.h"
 
 static uint64_t rdtsc(void) {
-#ifdef _WIN32
+#ifdef _MSC_VER
     return __rdtsc();
 #else
 #if defined(__amd64__) || defined(__x86_64__)
